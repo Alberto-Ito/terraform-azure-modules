@@ -4,12 +4,12 @@ variable "name" {
 }
 
 variable "identity_id" {
-  description = "The idetity used for Data Factory."
+  description = "The user-assigned managed identity ID used by Azure Data Factory."
   type        = string
 }
 
 variable "location" {
-  description = "The region were the resource will be deployed."
+  description = "The Azure region where the resources will be deployed."
   type        = string
 }
 
@@ -51,12 +51,13 @@ variable "private_link_service_name" {
 }
 
 variable "postgres_fqdns" {
-  description = "List of fully qualified domain names used by Data Factory to validate the Managed Private Endpoint connection to PostgreS."
+  description = "List of fully qualified domain names used by Data Factory to validate the Managed Private Endpoint connection to PostgreSQL."
   type        = list(string)
   default     = []
 }
 
 variable "storages_within_sub_managed_pe" {
+  description = "Storage account managed private endpoints to create and approve in the current subscription."
   type = list(object({
     name                 = string
     storage_account_name = string
@@ -65,6 +66,7 @@ variable "storages_within_sub_managed_pe" {
 }
 
 variable "storage_out_sub_managed_pe" {
+  description = "Storage account managed private endpoints to create and approve outside the current subscription."
   type = list(object({
     name                 = string
     storage_account_name = string
